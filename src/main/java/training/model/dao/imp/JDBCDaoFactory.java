@@ -18,7 +18,7 @@ public class JDBCDaoFactory extends DaoFactory {
             return DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/reg_form_jdbc",
                     "helvetica" ,
-                    "marchik310500" );
+                    "password" );
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
