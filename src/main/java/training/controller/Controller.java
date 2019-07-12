@@ -2,13 +2,10 @@ package training.controller;
 
 import training.exceptions.LoginMismatchException;
 import training.model.dao.UserDao;
-import training.model.dao.imp.JDBCUserDao;
-import training.model.entity.AccountancyBook;
 import training.model.entity.User;
 import training.reader.ConsoleReader;
 import training.view.View;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -17,9 +14,9 @@ import java.util.regex.Pattern;
 
 public class Controller {
 
-    private final String FIRST_NAME_REGEXP = "firstname.en.regexp";
-    private final String LAST_NAME_REGEXP = "lastname.en.regexp";
-    private final String PATRONIM_REGEXP = "patronim.en.regexp";
+    private final String FIRST_NAME_REGEXP = "firstname.regexp";
+    private final String LAST_NAME_REGEXP = "lastname.regexp";
+    private final String PATRONIM_REGEXP = "patronim.regexp";
     private final String NICKNAME_REGEXP = "nickname.regexp";
     private final String PHONE_NUMBER_REGEXP = "mobilephone.regexp";
     public final String ADDTIONAL_NUMBER_REGEXP = "mobilephone.regexp";
@@ -35,18 +32,18 @@ public class Controller {
 
     private final String RESOURCE_NAME = "property.regex";
     private UserDao jdbcUserDao;
-    private AccountancyBook accountancyBook;
     private ResourceBundle resourceBundle;
     private ConsoleReader consoleReader;
     private Locale locale;
     private View view;
 
-    public Controller(View view, AccountancyBook accountancyBook, ConsoleReader consoleReader, UserDao jdbcUserDao){
-        this.accountancyBook = accountancyBook;
+
+    public Controller(View view, ConsoleReader consoleReader, UserDao jdbcUserDao){
         this.view = view;
         this.consoleReader = consoleReader;
         this.locale = new Locale("en");
         this.jdbcUserDao=jdbcUserDao;
+        this.locale = new Locale("en");
         resourceBundle = ResourceBundle.getBundle(RESOURCE_NAME, Locale.getDefault());
     }
 
@@ -139,12 +136,14 @@ public class Controller {
                     String phoneNumber = "";
                     try {
 
+                        view.viewMessage(view.getString(view.FIRST_NAME_REQUEST));
                         firstName = processForm(firstName, getString(FIRST_NAME_REGEXP));
                         view.viewMessage(view.getString(view.LAST_NAME_REQUEST));
                         lastName = processForm(lastName, getString(LAST_NAME_REGEXP));
-                        view.viewMessage(view.getString(view.PATRONIM_REQUEST));
+                        view.viewMessage(view.getString(view.NICKNAME_REQUEST));
                         login = processForm(login, getString(NICKNAME_REGEXP));
                         checkForLoginDuplication(login);
+                        view.viewMessage(view.getString(view.PHONE_NUMBER_REQUEST));
                         phoneNumber = processForm(phoneNumber, getString(PHONE_NUMBER_REGEXP));
 
                         userToAdd = new User(firstName,lastName,login,phoneNumber);

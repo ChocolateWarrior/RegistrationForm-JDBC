@@ -52,9 +52,9 @@ public class View {
     public final String HOUSE_NUMBER_INVALID = "invalid.address.housenumber";
     public final String APARTMENT_INVALID = "invalid.address.apartmentnumber";
 
-    public final String FIRST_NAME_REGEXP = "firstname.en.regexp";
-    public final String LAST_NAME_REGEXP = "lastname.en.regexp";
-    public final String PATRONIM_REGEXP = "patronim.en.regexp";
+    public final String FIRST_NAME_REGEXP = "firstname.regexp";
+    public final String LAST_NAME_REGEXP = "lastname.regexp";
+    public final String PATRONIM_REGEXP = "patronim.regexp";
     public final String PHONE_NUMBER_REGEXP = "mobilephone.regexp";
     public final String ADDTIONAL_NUMBER_REGEXP = "mobilephone.regexp";
     public final String HOME_NUMBER_REGEXP = "stationaryphone.regexp";
